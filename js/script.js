@@ -2,6 +2,7 @@
 let colors = ["red", "green", "yellow", "blue"];
 let i = 1;
 let colorArray;
+let x = 0;
 
 let blueAudio = new Audio('sounds/blue.mp3');
 let greenAudio = new Audio('sounds/green.mp3');
@@ -11,18 +12,13 @@ let wrongAudio = new Audio('sounds/wrong.mp3');
 
 // Game Starting Chapter
 
-startGame();
+$(document).keypress(function () {
 
-function startGame() {
-    $(document).keypress(function () {
+    colorArray = [];
 
-        // let randomNumber = Math.floor(Math.random() * 4);
-        colorArray = [];
-
-        $("h1").text("Level " + i);
-        animateDiv(createRandomColor());
-    });
-}
+    $("h1").text("Level " + i);
+    animateDiv(createRandomColor());
+});
 
 function createRandomColor() {
     var randomNumber = Math.floor(Math.random() * 4);
@@ -54,7 +50,6 @@ function animateDiv(color) {
             alert("Smth going wrong !");
 
     }
-    // }
 }
 
 function toggleAnimation(className) {
@@ -86,11 +81,13 @@ $(".btn").on("click", function () {
     i++;
     $("h1").text("Level " + i);
     continueGame();
+
 });
 
 function continueGame() {
     for (x = 0; x < i; x++) {
         animateDiv(createRandomColor());
+
     }
 }
 
