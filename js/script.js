@@ -1,5 +1,5 @@
 // console.log("script here!");
-
+let colors = ["red", "green", "yellow", "blue"];
 let i = 1;
 let colorArray;
 
@@ -20,36 +20,33 @@ function startGame() {
         colorArray = [];
 
         $("h1").text("Level " + i);
-        animateDiv(createRandomNumber());
+        animateDiv(createRandomColor());
     });
 }
 
-function continueGame() {
-    animateDiv(createRandomNumber());
+function createRandomColor() {
+    var randomNumber = Math.floor(Math.random() * 4);
+
+    return colors[randomNumber];
 }
 
-function createRandomNumber() {
-    return Math.floor(Math.random() * 4);
-}
+function animateDiv(color) {
 
-function animateDiv(number) {
-    // let randomNumber = Math.floor(Math.random() * 4);
+    switch (color) {
 
-    switch (number) {
-
-        case 0:
+        case "green":
             toggleAnimation(".green");
             colorArray.push("green");
             break;
-        case 1:
+        case "red":
             toggleAnimation(".red");
             colorArray.push("red");
             break;
-        case 2:
+        case "yellow":
             toggleAnimation(".yellow");
             colorArray.push("yellow");
             break;
-        case 3:
+        case "blue":
             toggleAnimation(".blue");
             colorArray.push("blue");
             break;
@@ -57,7 +54,7 @@ function animateDiv(number) {
             alert("Smth going wrong !");
 
     }
-
+    // }
 }
 
 function toggleAnimation(className) {
@@ -73,9 +70,7 @@ $(".btn").on("click", function () {
 
     if ($(this).attr("id") === colorArray[i - 1]) {
         playSound($(this).attr("id"));
-        i++;
-        $("h1").text("Level " + i);
-        continueGame();
+
     } else {
         wrongAudio.play();
         $("body").addClass("game-over");
@@ -87,7 +82,17 @@ $(".btn").on("click", function () {
 
         }, 1000);
     }
+
+    i++;
+    $("h1").text("Level " + i);
+    continueGame();
 });
+
+function continueGame() {
+    for (x = 0; x < i; x++) {
+        animateDiv(createRandomColor());
+    }
+}
 
 function playSound(nameOfButton) {
 
