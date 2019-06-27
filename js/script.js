@@ -1,4 +1,5 @@
 // console.log("script here!");
+
 let i = 1;
 let colorArray;
 
